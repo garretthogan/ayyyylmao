@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Ayy lmao</title>
+</head>
+<body>
+  
+  <script>
+    var emotes = ['😂', '🔥', '👌', '💯']
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }    
+    (function r() {
+      setTimeout(r, Math.random() * 10);
+      let el = document.createElement('div');
+      el.innerHTML = emotes[getRandomInt(0, 4)];
+      el.style.position = 'absolute';
+      el.style.zIndex = 999999;
+      el.style.fontSize = (((Math.random() * 48) | 0) + 16) + 'px';
+      el.style.left = ((Math.random() * innerWidth) | 0) + 'px';
+      el.style.top = ((Math.random() * (innerHeight + pageYOffset)) | 0) + 'px';
+      const rotation = getRandomInt(-20, 20) + 'deg';
+      el.style.transform = 'rotate(' + rotation + ')';
+      document.body.appendChild(el);
+    })();
+  </script>
+</body>
+</html>
