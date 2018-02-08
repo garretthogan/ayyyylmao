@@ -11,27 +11,51 @@
   <title>Ayy lmao</title>
 </head>
 <body>
+  <canvas height="100%" id="canvas"></canvas>
+  <style>
+    html,
+    body {
+      height: 100vh;
+      width: 100vh;
+    }
   
+    #canvas {
+      image-rendering: auto;
+      height: 100vh;
+    }
+  </style>
   <script>
-    var emotes = ['😂', '🔥', '👌', '💯']
+    const emotes = ['😂', '🔥', '👌', '💯'];
+    const canvas = document.getElementById('canvas');
+  
+    const ratio = devicePixelRatio;
+    let ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+  
+    canvas.width = window.innerWidth * devicePixelRatio;
+    canvas.height = window.innerHeight * devicePixelRatio;
+    ctx.scale(2, 2);
+    ctx = canvas.getContext('2d');
+  
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    }    
-    (function r() {
-      setTimeout(r, Math.random() * 10);
-      let el = document.createElement('div');
-      el.innerHTML = emotes[getRandomInt(0, 4)];
-      el.style.position = 'absolute';
-      el.style.zIndex = 999999;
-      el.style.fontSize = (((Math.random() * 48) | 0) + 16) + 'px';
-      el.style.left = ((Math.random() * innerWidth) | 0) + 'px';
-      el.style.top = ((Math.random() * (innerHeight + pageYOffset)) | 0) + 'px';
-      const rotation = getRandomInt(-20, 20) + 'deg';
-      el.style.transform = 'rotate(' + rotation + ')';
-      document.body.appendChild(el);
-    })();
+    }
+  
+    function draw() {
+      const fontSize = (((Math.random() * 48) | 0) + 16) + 'px';
+      const emoji = emotes[getRandomInt(0, 4)]
+      const x = ((Math.random() * innerWidth) | 0);
+      const y = ((Math.random() * (innerHeight + pageYOffset)) | 0);
+      const rotation = getRandomInt(-20, 20);
+      ctx.font = `${fontSize} sans-serif`;
+      ctx.rotate(rotation);
+      ctx.fillText(emoji, x, y);
+      setTimeout(draw, Math.random() * 10);
+    }
+  
+    draw();
   </script>
 </body>
 </html>
