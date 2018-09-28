@@ -25,7 +25,7 @@
     }
   </style>
   <script>
-    const emotes = ['😂', '🔥', '👌', '💯', '🍞'];
+    const emojis = ['😂', '🔥', '👌', '💯', '🍞'];
   
     const scale = devicePixelRatio;
     const w = window.innerWidth;
@@ -42,12 +42,12 @@
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+      return Math.floor(Math.random() * (max - min)) + min; // The maximum is exclusive and the minimum is inclusive
     }
   
     function draw() {
       const fontSize = (((Math.random() * 48) | 0) + 16) + 'px';
-      const emoji = emotes[getRandomInt(0, 4)];
+      const emoji = emojis[getRandomInt(0, emojis.length)];
       const x = getRandomInt(0, w);
       const y = getRandomInt(0, h);
       const rotation = getRandomInt(-20, 20);
